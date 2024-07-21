@@ -243,8 +243,8 @@ function Ui(canvas, _limit){
 		self.onGestDown(x, y, id);
 	});
 	canvas.addEventListener("mousemove", function(ev){
-		let id = ev.button;
-		if (_gests[id].holding){
+		let id = ([-1, 0, 2, 1, -1, -1, -1, -1, -1, -1, -1])[ev.buttons];
+		if (_gests[id] && _gests[id].holding){
 			let x = ev.clientX-canvas.getBoundingClientRect().left;
 			let y = ev.clientY-canvas.getBoundingClientRect().top;
 			let dx = x-_gests[id].x;

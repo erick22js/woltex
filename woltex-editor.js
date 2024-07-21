@@ -29,7 +29,7 @@ function WoltexEditor(ui){
 		let data = [];
 		for (let d in WoltexData){
 			if (!d.startsWith("Woltex:") && d!="pin" && d!="wire"){
-				data.push([d, d, WoltexData]);
+				data.push([d, d, WoltexData[d]]);
 			}
 		}
 		
@@ -112,7 +112,7 @@ function WoltexEditor(ui){
 			let wire = wires[i];
 			if ((Math.hypot(x-wire.getPin1().getAbsX(), y-wire.getPin1().getAbsY())+
 				Math.hypot(x-wire.getPin2().getAbsX(), y-wire.getPin2().getAbsY())) <
-				(Math.hypot(wire.getPin2().getAbsX()-wire.getPin1().getAbsX(), wire.getPin2().getAbsY()-wire.getPin1().getAbsY())+7)){
+				(Math.hypot(wire.getPin2().getAbsX()-wire.getPin1().getAbsX(), wire.getPin2().getAbsY()-wire.getPin1().getAbsY())+4/core.env.camera.zoom)){
 				return wire;
 			}
 		}
@@ -209,7 +209,7 @@ function WoltexEditor(ui){
 			stdout.textContent = 2**Math.round(Math.log2(core.env.camera.zoom));
 		}
 		else {
-			if (in_mode_type.value=="drag"||in_mode_type.value=="put"){
+			if (in_mode_type.value=="drag"||in_mode_type.value=="put"||id==2){
 				core.env.camera.x -= dx/core.env.camera.zoom;
 				core.env.camera.y -= dy/core.env.camera.zoom;
 			}

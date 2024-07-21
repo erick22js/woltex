@@ -241,8 +241,8 @@ function woltexDeserialize(serial){
 				comp.setMeta(m, item["meta"][m]);
 			}
 			comp._setTicks(item["ticks"]);
-			if (item["env"]>=0){
-				comp.setEnviorment(sdata["envs"][item["env"]]);
+			if (item["enviorment"]>=0){
+				comp.setEnviorment(sdata["_envs"][item["enviorment"]]);
 			}
 			comp.setDirection(item["direction"]);
 			comp.setX(item["x"]);

@@ -254,6 +254,9 @@ function WoltexEnv(){
 			updatePin(wire.getPin1());		
 		}
 	}
+	function updateStage(){
+		stage = (stage&0x5FFFFFFF)+1;
+	}
 	
 	/*
 		Control Events
@@ -277,20 +280,23 @@ function WoltexEnv(){
 	}
 	self._update = function(dt){
 		// Pieces Processing
-		stage = (stage&0xFFFF)+1;
 		for (let i=0; i<in_pins.length; i++){
+			updateStage();
 			updatePin(in_pins[i]);
 		}
 		for (let i=0; i<comps_event.length; i++){
+			updateStage();
 			updateComponent(comps_event[i], true);
 		}
 		for (let i=0; i<trg_pins.length; i++){
 			if ((!trg_pins[i].getLastValue())!=(!trg_pins[i].getValue())){
+				updateStage();
 				updatePin(trg_pins[i]);
 				trg_pins[i]._setLastValue(trg_pins[i].getValue());
 			}
 		}
 		for (let i=0; i<comps_trigger.length; i++){
+			updateStage();
 			updateComponent(comps_trigger[i], true);
 		}
 		comps_trigger.length = 0;
