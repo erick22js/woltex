@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html user-scalable="no">
+	<head>
+		<title></title>
+		<meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	</head>
+	<body>
+		<canvas id="tela" width="350" height="320" style="border:1px solid black;"></canvas>
+		
+		<label>Workspace:</label>
+		<select id="in_workspace">
+			<option value="Main">Main</option>
+		</select>
+		<button id="btn_createws">Create</button>
+		<button id="btn_removews">Remove</button>
+		<br/>
+		<button id="btn_execution">Resume</button>
+		<button id="btn_reset">Reset</button>
+		<button id="btn_detail">Details</button>
+		<button id="btn_clone">Clone</button>
+		<button id="btn_serialize">Serialize</button>
+		<br/>
+		<button id="btn_enter">Enter chip</button>
+		<button id="btn_leave">Leave chip</button>
+		<button id="btn_build">Build chip</button>
+		<br/>
+		<label>Mode:</label>
+		<select id="in_mode_type">
+			<option value="drag">Drag Screen</option>
+			<option value="move">Move Component</option>
+			<option value="put">Put Component</option>
+			<option value="interact">Interaction</option>
+		</select>
+		<button id="btn_rotclock">Rotate Cl</button>
+		<button id="btn_rotanti">Rotate An</button>
+		<br/>
+		<label>Component:</label>
+		<select id="in_comp_type">
+			<option value="pin">pin</option>
+			<option value="wire">wire</option>
+			<option value="Woltex:ANDGate">AND Gate</option>
+			<option value="Woltex:ORGate">OR Gate</option>
+			<option value="Woltex:XORGate">XOR Gate</option>
+			<option value="Woltex:NOTGate">NOT Gate</option>
+			<option value="Woltex:Encoder">Encoder</option>
+			<option value="Woltex:Decoder">Decoder</option>
+			<option value="Woltex:Clock">Clock</option>
+			<option value="Woltex:Constant">Constant Signal</option>
+			<option value="Woltex:Switch">Switch</option>
+			<option value="Woltex:Measurer">Measurer</option>
+			<option value="Woltex:Led">Led</option>
+			<option value="Woltex:Latchable">Latchable</option>
+		</select>
+		<label id="lbl_edit_mode">Sizing:</label>
+		<select id="in_edit_mode">
+			<option value="tiny">Tiny</option>
+			<option value="normal">Normal</option>
+			<option value="larger">Larger</option>
+			<option value="extra">Extra</option>
+		</select>
+		<button id="btn_rem_comp">Remove Component</button>
+		<br/><br/>
+		<button id="btn_delete">Delete</button>
+		<button id="btn_clearall">Clear Everything</button>
+		|
+		<button id="btn_load">Load</button>
+		<button id="btn_save">Save</button>
+		
+		<script src="ui.js"></script>
+		<script src="woltex-pieces.js"></script>
+		<script src="woltex-env.js"></script>
+		<script src="woltex-core.js"></script>
+		<script src="woltex-serial.js"></script>
+		<script src="woltex-base.js"></script>
+		<script src="woltex-editor.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>
