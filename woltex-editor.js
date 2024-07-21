@@ -332,6 +332,14 @@ function WoltexEditor(ui){
 			}
 		}
 	}
+	ui.onMouseScroll = function(y){
+		if (y>0){
+			core.env.camera.zoom /= Math.sqrt(2);
+		}
+		else {
+			core.env.camera.zoom *= Math.sqrt(2);
+		}
+	}
 	
 	/*
 		Extern Controls

@@ -157,6 +157,7 @@ function Ui(canvas, _limit){
 	self.onGestTap = function(x, y, id){};
 	self.onGestHold = function(x, y, id){};
 	self.onGestUp = function(x, y, id){};
+	self.onMouseScroll = function(y){};
 	
 	/*
 		Internal Operations
@@ -230,6 +231,48 @@ function Ui(canvas, _limit){
 			_gests[id].time = (new Date());
 			self.onGestUp(x, y, id);
 		}
+	});
+	canvas.addEventListener("mousedown", function(ev){
+		let id = ev.button;
+		let x = ev.clientX-canvas.getBoundingClientRect().left;
+		let y = ev.clientY-canvas.getBoundingClientRect().top;
+		_gests[id].holding = true;
+		_gests[id].x = x;
+		_gests[id].y = y;
+		_gests[id].time = (new Date());
+		self.onGestDown(x, y, id);
+	});
+	canvas.addEventListener("mousemove", function(ev){
+		let id = ev.button;
+		if (_gests[id].holding){
+			let x = ev.clientX-canvas.getBoundingClientRect().left;
+			let y = ev.clientY-canvas.getBoundingClientRect().top;
+			let dx = x-_gests[id].x;
+			let dy = y-_gests[id].y;
+			_gests[id].x = x;
+			_gests[id].y = y;
+			self.onGestMove(x, y, dx, dy, id);
+		}
+	});
+	canvas.addEventListener("mouseup", function(ev){
+		let id = ev.button;
+		let x = ev.clientX-canvas.getBoundingClientRect().left;
+		let y = ev.clientY-canvas.getBoundingClientRect().top;
+		_gests[id].holding = false;
+		_gests[id].x = x;
+		_gests[id].y = y;
+		let time = (new Date());
+		if ((time-_gests[id].time) < 200){
+			self.onGestTap(x, y, id);
+		}
+		else if ((time-_gests[id].time) > 1200){
+			self.onGestHold(x, y, id);
+		}
+		_gests[id].time = (new Date());
+		self.onGestUp(x, y, id);
+	});
+	canvas.addEventListener("wheel", function(ev){
+		self.onMouseScroll(ev.deltaY>0? 1: -1);
 	});
 	window.addEventListener("load", function(){
 		self.onStart();
